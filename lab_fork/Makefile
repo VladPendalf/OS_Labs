@@ -1,13 +1,13 @@
 .PHONY: all run clean
 
-all: Fork.o
-	gcc Fork.o -std=c99 -o Fork
+all: Lab1.o
+	gcc Lab1.o -std=c99 -o Lab1
 
 Fork.o:	Fork.c
-	gcc -c Fork.c -o Fork.o
+	gcc -c Lab1.c -o Lab1.o
 
 run: 
-	./Fork
+	./Lab1
 
 clean:
-	rm -f Fork.o Fork
+	rm -f Lab1.o Lab1
