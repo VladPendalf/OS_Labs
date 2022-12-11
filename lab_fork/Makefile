@@ -3,7 +3,7 @@
 all: Lab1.o
 	gcc Lab1.o -std=c99 -o Lab1
 
-Fork.o:	Fork.c
+Fork.o:	Lab1.c
 	gcc -c Lab1.c -o Lab1.o
 
 run: 
