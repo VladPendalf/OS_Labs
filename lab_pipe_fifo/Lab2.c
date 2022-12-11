@@ -15,21 +15,17 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <fcntl.h>
-/*====================================================/*
-ECЛИ ЧТО-ТО ВЫГЛЯДИТ, КАК ГОВНО, ПАХНЕТ КАК ГОВНО И НА
-ВКУС ГОВНО, ТО НАВЕРНОЕ - ЭТО ГОВНО
-//====================================================*/
 
 //==================TIME=============================
-time_t rawtime;
+time_t      rawtime;
 struct tm * timeinfo;
 //===================================================
 
-void writer(int fd) //parent
+void writer(int fd)
 {
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    char* str = asctime(timeinfo);
+    time(&rawtime);
+    timeinfo  = localtime(&rawtime );
+    char* str = asctime  (timeinfo);
 
     int new_size = strlen(str)+8;
     char result[new_size];
@@ -39,12 +35,13 @@ void writer(int fd) //parent
     write(fd, result, strlen(result));
 }
 
-void reader(int fd)  //child
+void reader(int fd)
 {
     sleep(5);
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    char* str = asctime(timeinfo);
+    time(&rawtime);
+    
+    timeinfo  = localtime(&rawtime);
+    char* str = asctime  (timeinfo);
     
     char buf = 0;
     while (read(fd, &buf, 1) > 0) 
