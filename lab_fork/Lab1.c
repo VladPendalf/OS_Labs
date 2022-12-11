@@ -11,22 +11,20 @@
 
 void My_atexit() {printf("Exit from\n", getpid());}
 
-void Sig_Int(int num) {
+void Sig_Int(int num) 
+{
     printf("getpid =  %i getppid = %i num = %i strsignal(num) = (%s)\n", 
-            getpid(), getppid(), 
-            num, strsignal(num)
-        );
+            getpid(),    getppid(),   num,     strsignal(num));
 }
 
-void Sig_Term(int num) {
+void Sig_Term(int num) 
+{
     printf("getpid =  %i getppid = %i num = %i strsignal(num) = (%s)\n", 
-            getpid(), getppid(),
-            num, strsignal(num)
-        );
+            getpid(),    getppid(),   num,     strsignal(num));
 }
 
 
-main() 
+int main() 
 {
     pid_t pid = fork();
     //================================================================
@@ -76,8 +74,7 @@ main()
         if (waitId < 0) return 1;
 
         printf("PARENT: Child die with code %i (%s)\n", 
-                Exit_Code, strsignal(Exit_Code)
-            );
+                Exit_Code, strsignal(Exit_Code));
         return 0;
     }
 
