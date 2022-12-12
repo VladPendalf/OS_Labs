@@ -17,36 +17,35 @@
 #include <fcntl.h>
 
 //==================TIME=============================
-time_t      rawtime;
+time_t rawtime;
 struct tm * timeinfo;
 //===================================================
 
-void writer(int fd)
+void writer(int fd) //parent
 {
-    time(&rawtime);
-    timeinfo  = localtime(&rawtime );
-    char* str = asctime  (timeinfo);
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    char* str = asctime(timeinfo);
 
-    int new_size = strlen(str)+8;
+    int new_size = strlen(str)+15;
     char result[new_size];
 
     snprintf(result, new_size, "[%d]: %s", getpid(), str);
-
     write(fd, result, strlen(result));
 }
 
-void reader(int fd)
+void reader(int fd)  //child
 {
     sleep(5);
-    time(&rawtime);
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    char* str = asctime(timeinfo);
     
-    timeinfo  = localtime(&rawtime);
-    char* str = asctime  (timeinfo);
-    
-    char buf = 0;
-    while (read(fd, &buf, 1) > 0) 
-        printf("%c", buf);
+    char* buf = calloc(sizeof(char),32);
+    read(fd, buf, 32);
 
+    printf("%s",buf);
+    free(buf);
     printf("\n[%d]: ", getpid());
     printf("%s\n", str);
 }
@@ -56,17 +55,13 @@ int main()
 {
     //==================PIPE=============================
     int fd[2];
-    if(pipe(fd) != 0)
-    {
-        perror("Pepe smth error\n\a");
-        exit(EXIT_FAILURE);
-    }
+    pipe(fd);
 
     pid_t childpid = fork();
     switch (childpid)
     {
     case -1:
-        perror("fork error\n\a");
+        printf("fork error\n\a");
         exit(EXIT_FAILURE);
         break;
 
@@ -88,19 +83,14 @@ int main()
     //===================FIFO============================
     printf("i'm sleeping before FIFO is started\n");
     sleep(5);
-    int fifo = mkfifo("fifo.fifo", S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    mkfifo("fifo.fifo", 0666);
     int id;
-    if (fifo < 0) 
-    {
-        perror("FIFO error");
-        exit(EXIT_FAILURE);
-    }
 
     childpid = fork();  
     switch (childpid) 
     {
     case -1:
-        perror("Fork error");
+        printf("Fork error");
         exit(EXIT_FAILURE);
         break;
 
