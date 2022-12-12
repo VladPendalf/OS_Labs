@@ -11,7 +11,8 @@ file2.o: file2.c
 	gcc -c file2.c -o file2.o
 
 run: 
-	./file1 ./file2
+	./file1 & 
+	./file2
 
 clean:
 	rm -f *.o file1 file2
