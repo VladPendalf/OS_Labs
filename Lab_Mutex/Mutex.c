@@ -15,7 +15,7 @@ void* Writer(void* arg)
     while (1)
     {
         pthread_mutex_lock(&gMtx);
-        snprintf(std,195,"Writer[%d]: count = %d", getpid(),count);
+        snprintf(std,49,"Writer[%d]: count = %d", getpid(),count);
         pthread_mutex_unlock(&gMtx);
         count++;
         sleep(1);
