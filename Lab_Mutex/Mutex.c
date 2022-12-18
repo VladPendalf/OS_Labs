@@ -29,7 +29,7 @@ void* Reader(void* arg)
     {
         sleep(1);
         pthread_mutex_lock(&gMtx);
-        printf("\nReader[%d]: %s",pthread_self(),std);
+        printf("\nReader[%d]: %s",(int)pthread_self(),std);
         pthread_mutex_unlock(&gMtx);
     }
     pthread_exit(0);
