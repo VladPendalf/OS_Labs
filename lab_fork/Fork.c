@@ -11,12 +11,14 @@
 
 void My_atexit() {printf("\nExit Successfully\n", getpid());}
 
-void Sig_Int(int num) {
+void Sig_Int(int num) 
+{
     printf("\ngetpid =  %i getppid = %i num = %i strsignal(num) = (%s)\n", 
               getpid(),    getppid(),   num,     strsignal(num));
 }
 
-void Sig_Term(int num) {
+void Sig_Term(int num) 
+{
     printf("\ngetpid =  %i getppid = %i num = %i strsignal(num) = (%s)\n", 
               getpid(),    getppid(),   num,     strsignal(num));
 }
