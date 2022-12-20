@@ -1,7 +1,7 @@
 .PHONY: all run clean
 
 all: Cond.o
-	gcc Cond.o -std=c99 -o Cond
+	gcc Cond.o -std=c99 -lpthread -o Cond
 
 Cond.o:	Cond.c
 	gcc -c Cond.c -o Cond.o
