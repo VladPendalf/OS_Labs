@@ -5,7 +5,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
-
+#include <string.h>
+#include <stdlib.h>
 //==================TIME=============================
 time_t      rawtime;
 struct tm * timeinfo;
