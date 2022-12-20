@@ -1,7 +1,7 @@
 .PHONY: all run clean
 
 all: Mutex.o
-	gcc Mutex.o -std=c99 -o Mutex
+	gcc Mutex.o -std=c99 -lpthread -o Mutex
 
 Mutex.o:	Mutex.c
 	gcc -c Mutex.c -o Mutex.o
