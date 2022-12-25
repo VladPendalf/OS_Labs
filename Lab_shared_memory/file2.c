@@ -38,7 +38,7 @@ int main()
         char *str = (char*) shmat(shmid, NULL ,0);
 
         printf("\n%s",str);
-        printf("\n[%d]: %s", getpid(), str_time);
+        printf("\n[%x]: %s", getpid(), str_time);
 
         shmdt(str);
         sleep(1);
