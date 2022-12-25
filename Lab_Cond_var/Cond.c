@@ -29,7 +29,6 @@ void* Reader(void* arg)
 {
     while (1)
     {
-        sleep(1);
         pthread_mutex_lock(&gMtx);
         printf("\nReader[%x]: %s",(int)pthread_self(),std);
         pthread_cond_wait(&cond,&gMtx);
