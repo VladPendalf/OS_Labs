@@ -15,7 +15,7 @@ void* Writer(void* arg)
     while (1)
     {
         pthread_rwlock_wrlock(&lock);
-        snprintf(std,49,"Writer[%d]: count = %d", getpid(),count);
+        snprintf(std,49,"Writer[%x]: count = %d", getpid(),count);
         pthread_rwlock_unlock(&lock);
         count++;
         sleep(1);
@@ -29,7 +29,7 @@ void* Reader(void* arg)
     {
         sleep(1);
         pthread_rwlock_rdlock(&lock);
-        printf("\nReader[%d]: %s",(int)pthread_self(),std);
+        printf("\nReader[%x]: %s",(int)pthread_self(),std);
         pthread_rwlock_unlock(&lock);
     }
     pthread_exit(0);
