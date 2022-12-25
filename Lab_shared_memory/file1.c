@@ -35,7 +35,7 @@ int main()
         char *str = (char*) shmat(shmid, NULL, 0);
         str_time = asctime(timeinfo);
         snprintf(str, new_size, "[%d]: %s", getpid(), str_time);
-        printf(  "\nData writen: %s\n",str);
+//        printf(  "\nData writen: %s\n",str);
         shmdt(str);
         sleep(1);
    }
