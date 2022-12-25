@@ -16,7 +16,7 @@ void* Writer(void* arg)
     while (1)
     {
         pthread_mutex_lock(&gMtx);
-        snprintf(std,49,"Writer[%d]: count = %d", getpid(),count);
+        snprintf(std,49,"Writer[%x]: count = %d", getpid(),count);
         pthread_cond_broadcast(&cond);
         pthread_mutex_unlock(&gMtx);
         count++;
@@ -31,7 +31,7 @@ void* Reader(void* arg)
     {
         sleep(1);
         pthread_mutex_lock(&gMtx);
-        printf("\nReader[%d]: %s",(int)pthread_self(),std);
+        printf("\nReader[%x]: %s",(int)pthread_self(),std);
         pthread_cond_wait(&cond,&gMtx);
         pthread_mutex_unlock(&gMtx);
     }
