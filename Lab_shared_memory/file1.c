@@ -18,7 +18,7 @@ int main()
     pid_t pid;
     key_t key = ftok("shmfile",65);
 
-    int shmid = shmget(key,1024,0666|IPC_CREAT| S_IRUSR | S_IWUSR);
+    int shmid = shmget(key,1024,0666|IPC_CREAT| S_IRUSR | S_IWUSR | IPC_EXCL);
 
     //=====================================
     time(&rawtime);
